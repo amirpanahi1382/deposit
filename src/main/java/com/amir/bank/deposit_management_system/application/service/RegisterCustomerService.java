@@ -14,8 +14,6 @@ public class RegisterCustomerService implements RegisterCustomerUseCase {
     public RegisterCustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
-
-
     @Override
     @Transactional
     public CustomerResponse register(RegisterCustomerCommand command) {
@@ -25,20 +23,15 @@ public class RegisterCustomerService implements RegisterCustomerUseCase {
         PhoneNumber phoneNumber = PhoneNumber.of(command.phoneNumber());
         FullName fullName = FullName.of(command.firstName(), command.lastName());
         // چک برای عدم تکرار
-
         if (customerRepository.existsByEmail(email)) {
             throw new IllegalArgumentException("ایمیل وارد شده قبلاً ثبت شده است");
         }
-
         if (customerRepository.existsByNationalCode(nationalCode)) {
             throw new IllegalArgumentException("کد ملی وارد شده قبلاً ثبت شده است");
         }
-
         // ایجاد موجودیت جدید مشتری
         Customer customer = Customer.registerNew(email, nationalCode, phoneNumber, fullName);
-
         Customer saved = customerRepository.save(customer);
-
         // تبدیل به DTO برای پاسخ
         return new CustomerResponse(
                 saved.getId().getValue(),
@@ -49,6 +42,5 @@ public class RegisterCustomerService implements RegisterCustomerUseCase {
                 saved.getRegisteredAt(),
                 saved.isActive()
         );
-
     }
 }

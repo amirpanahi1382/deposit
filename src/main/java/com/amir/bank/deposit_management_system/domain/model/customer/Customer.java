@@ -29,7 +29,6 @@ public final class Customer {
         this.registeredAt = registeredAt;
         this.active = active;
     }
-
     public static Customer restore(
             CustomerId id,
             Email email,
@@ -52,6 +51,7 @@ public final class Customer {
             throw new IllegalArgumentException("Phone number cannot be null");
         }
         if (fullName == null) {
+
             throw new IllegalArgumentException("Full name cannot be null");
         }
         if (registeredAt == null) {
@@ -60,7 +60,6 @@ public final class Customer {
 
         return new Customer(id, email, nationalCode, phoneNumber, fullName, registeredAt, active);
     }
-
     /**
      * Factory method for registering a new customer.
      */
@@ -86,7 +85,6 @@ public final class Customer {
      * Returns a new instance with status activated.
      */
     public Customer activate() {
-
         return new Customer(id, email, nationalCode, phoneNumber, fullName, registeredAt, true);
     }
     // --- Getters ---
@@ -111,9 +109,7 @@ public final class Customer {
     public boolean isActive() {
         return active;
     }
-
     // --- Equality by ID ---
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

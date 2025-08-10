@@ -32,9 +32,7 @@ public class CustomerJpaEntity {
     private String lastName;
 
     @Column(name = "registered_at", nullable = false)
-    private LocalDateTime registeredAt;
-
-    @Column(nullable = false)
+    private LocalDateTime registeredAt; @Column(nullable = false)
     private boolean active;
 
     protected CustomerJpaEntity() {}
@@ -50,7 +48,9 @@ public class CustomerJpaEntity {
         this.lastName = lastName;
         this.registeredAt = registeredAt;
         this.active = active;
-    }  public UUID getId() { return id; }
+    }
+
+    public UUID getId() { return id; }
     public String getEmail() { return email; }
     public String getNationalCode() { return nationalCode; }
     public String getPhoneNumber() { return phoneNumber; }
