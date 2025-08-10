@@ -30,7 +30,36 @@ public final class Customer {
         this.active = active;
     }
 
-    
+    public static Customer restore(
+            CustomerId id,
+            Email email,
+            NationalCode nationalCode,
+            PhoneNumber phoneNumber,
+            FullName fullName,
+            LocalDateTime registeredAt,
+            boolean active
+    ) {
+        if (id == null) {
+            throw new IllegalArgumentException("Customer ID cannot be null");
+        }
+        if (email == null) {
+            throw new IllegalArgumentException("Email cannot be null");
+        }
+        if (nationalCode == null) {
+            throw new IllegalArgumentException("National code cannot be null");
+        }
+        if (phoneNumber == null) {
+            throw new IllegalArgumentException("Phone number cannot be null");
+        }
+        if (fullName == null) {
+            throw new IllegalArgumentException("Full name cannot be null");
+        }
+        if (registeredAt == null) {
+            throw new IllegalArgumentException("Registered date cannot be null");
+        }
+
+        return new Customer(id, email, nationalCode, phoneNumber, fullName, registeredAt, active);
+    }
 
     /**
      * Factory method for registering a new customer.
